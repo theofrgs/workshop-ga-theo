@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run functional tests
-        run: make re && ./functional-test.sh > artifact/function-tests_outputs
+        run: make re && ./functional-test.sh > artifact/function-tests_outputs.txt
       - uses: actions/upload-artifact@v2
         with:
           name: Upload artifacts
