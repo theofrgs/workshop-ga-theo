@@ -1,0 +1,23 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  func_test:
+    container:
+      image: epitechcontent/epitest-docker
+    runs-on: ubuntu-20.04
+    steps:
+      - run: mkdir -p artifact
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run functional tests
+        run: make re && ./functional-test.sh > artifact/function-tests_outputs
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Upload artifacts
+          path: artifact/
